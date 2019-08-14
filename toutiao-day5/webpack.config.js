@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: __dirname + '/src/index.js',
     output: {
         path: __dirname + '/dist/',
@@ -12,6 +12,12 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             use: 'babel-loader'
+        }, {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader'
+            ]
         }]
     },
     plugins: [
