@@ -7,6 +7,8 @@ import './static/index.css'
 import * as utils from './utils'
 import components from './items';
 
+const THRESHOLD = 50
+
 class Manager {
     constructor($container) {
         this.$container = $container
@@ -14,6 +16,7 @@ class Manager {
 
     init() {
         this.appendData();
+        this.detectReachBottom(() => this.appendData())
     }
 
     appendData() {
@@ -27,6 +30,19 @@ class Manager {
                 this.$container.append(element)
             })
         })
+    }
+
+    // callback 默认是一个空方法，这样就不用了进行类型校验~
+    detectReachBottom(callback = () =>{}) {
+        window.onscroll = () => {
+            const offsetHeight = document.documentElement.offsetHeight
+            const screenHeight = window.screen.height
+            const scrollY = window.scrollY
+            const gap = offsetHeight - screenHeight - scrollY
+            if(gap < THRESHOLD) {
+                callback();
+            }
+        }
     }
 
     // 静态方法，可以在类外部被直接在类上调用

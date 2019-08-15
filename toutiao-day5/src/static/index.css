@@ -25,12 +25,16 @@ body {
     display: block;
 }
 
-.item.multiple-image h3 {
+.item.multiple-image h3, .large-pic h3 {
     font-size: 17px;
 }
 
 .item.multiple-image .image-list img {
     width: 33%;
+}
+
+.large-pic img {
+    width: 100%;
 }
 
 
